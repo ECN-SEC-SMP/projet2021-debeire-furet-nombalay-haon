@@ -16,7 +16,6 @@ protected:
 public:
   Achetables();
   acheter(Joueur);
-  virtual calculLoyer(Achetables a);
 };
 
 #endif
