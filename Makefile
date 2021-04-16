@@ -1,3 +1,4 @@
+
 all: monopoly.out
 
 monopoly.out: main.o Achetables.o Case.o Constructibles.o Fixes.o Gares.o Joueur.o Plateau.o
