@@ -1,3 +1,5 @@
+
+#include Joueurs.h
 #include <iostream>
 #include <string.h>
 using namespace std;
@@ -7,3 +9,4 @@ using namespace std;
   {
     cout << "Le joueur" << nomJoueur << "disposant de" << fortune << "euros, est à la position" << position << endl;
   }*/
+
