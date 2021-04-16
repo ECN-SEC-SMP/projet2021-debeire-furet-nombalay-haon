@@ -15,7 +15,7 @@ protected:
 
 public:
   Achetables();
-  acheter(Joueur);
+  void acheter(Joueur);
 };
 
 #endif
