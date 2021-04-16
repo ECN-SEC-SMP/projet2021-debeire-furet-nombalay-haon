@@ -8,8 +8,10 @@ using namespace std;
 class Case{ //classe abstraite
 protected:
   string nom; //pas de numéro de case car on range les cases dans un tableau
+  type char;
 
 public:
+  Case();
 
 };
 
