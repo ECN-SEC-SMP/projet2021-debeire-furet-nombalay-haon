@@ -21,12 +21,12 @@ using namespace std;
    this->position = 0;
   }
  
- bool Joueur::Paiement(Joueur donne,Joueur recoit, int somme)//Paiement à un autre joueur
+ bool Joueur::Paiement(Joueur recoit, int somme)//Paiement à un autre joueur
  {
-   if (somme<donne.getFortune())
+   if (somme<this->getFortune())
    {
-     int fortune_donne = (donne.getFortune()-somme);
-     donne.setFortune(fortune_donne);
+     int fortune_donne = (this->getFortune()-somme);
+     this->setFortune(fortune_donne);
      int fortune_recoit = (recoit.getFortune()+somme);
      recoit.setFortune(fortune_recoit);
      return true;
