@@ -5,3 +5,4 @@
 #include "Plateau.h"
 #include "Achetables.h"
 #include "Constructibles.h"
+#include "Compagnie.h"
