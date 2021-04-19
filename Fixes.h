@@ -1,7 +1,6 @@
 #ifndef __Fixe_h_
 #define __Fixe_h_
 
-#pragma once
 #include <iostream>
 #include "Case.h"
 using namespace std;

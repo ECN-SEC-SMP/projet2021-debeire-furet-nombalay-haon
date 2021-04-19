@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __Joueur_h
+#define __Joueur_h
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -26,3 +28,5 @@ class Joueur {
 
   bool Paiement(Joueur recoit, int somme);//Paiement à un autre joueur
 };
+
+#endif

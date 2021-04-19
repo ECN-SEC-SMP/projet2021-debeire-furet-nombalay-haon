@@ -1,7 +1,6 @@
 #ifndef __Constructibles_h
 #define __Constructibles_h
 
-#pragma once
 #include <iostream>
 #include <string>
 

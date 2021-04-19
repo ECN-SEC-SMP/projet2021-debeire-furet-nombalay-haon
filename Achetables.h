@@ -1,7 +1,6 @@
 #ifndef __Case_h
 #define __Case_h
 
-#pragma once
 #include <string>
 #include "Case.h"
 #include "Joueur.h"

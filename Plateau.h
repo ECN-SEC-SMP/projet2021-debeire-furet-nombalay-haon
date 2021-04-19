@@ -1,7 +1,6 @@
 #ifndef __Plateau_h_
 #define __Plateau_h_
 
-#pragma once
 #include <vector>
 #include <iostream>
 using namespace std;

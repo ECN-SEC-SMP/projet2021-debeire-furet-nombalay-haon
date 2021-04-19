@@ -1,7 +1,6 @@
 #ifndef __Compagnie_h
 #define __Compagnie_h
 
-#pragma once
 #include <iostream>
 #include <string>
 
