@@ -1,0 +1,7 @@
+#include "Case.h"
+#include "Fixes.h"
+#include "Gares.h"
+#include "Joueur.h"
+#include "Plateau.h"
+#include "Achetables.h"
+#include "Constructibles.h"
