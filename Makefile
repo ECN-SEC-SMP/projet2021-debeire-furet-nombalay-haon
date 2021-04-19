@@ -1,7 +1,7 @@
 all: monopoly.out
 
-monopoly.out: main.o Achetables.o Case.o Compagnie.o Constructibles.o Fixes.o Gares.o Joueur.o Plateau.o
-	g++ -o monopoly.out main.o Achetables.o Case.o Compagnie.o Constructibles.o Fixes.o Gares.o Joueur.o Plateau.o
+monopoly.out: main.o Achetables.o Case.o Compagnie.o 	Constructibles.o Fixes.o Gares.o Joueur.o Plateau.o
+	g++ -o monopoly.out main.o Achetables.o Case.o Compagnie.o	Constructibles.o Fixes.o Gares.o Joueur.o Plateau.o
 
 main.o: main.cpp
 	g++ -c main.cpp
@@ -13,7 +13,7 @@ Case.o: Case.cpp Case.h
 	g++ -c Case.cpp
 
 Compagnie.o: Compagnie.cpp Compagnie.h
-  g++ -c Compagnie.cpp
+	g++ -c Compagnie.cpp
 
 Constructibles.o: Constructibles.cpp Constructibles.h
 	g++ -c Constructibles.cpp
