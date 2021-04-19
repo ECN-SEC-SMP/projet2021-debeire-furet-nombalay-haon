@@ -17,7 +17,7 @@ public:
   //Constructeur
   Gare(int prix, string nom);
   //Méthodes
-  int calculLoyer();
+  int calculLoyer(int nbGares);
 };
 
 #endif
