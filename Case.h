@@ -1,7 +1,7 @@
 #ifndef __Case_h
 #define __Case_h
 
-#include "string.h"
+#include <string.h>
 
 using namespace std;
 
