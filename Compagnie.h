@@ -3,7 +3,7 @@
 
 #include "Case.h"
 #include "Achetables.h"
-#include "joueur.h"
+#include "Joueur.h"
 
 #include <iostream>
 #include <string.h>
@@ -11,14 +11,14 @@
 using namespace std;
 
 class Compagnie: public Achetables {
-protected
-  int loyer
+protected:
+  int loyer;
 
-public
+public:
   //Constructeur
-  Compagnie(int prix; string nom)
+  Compagnie(int prix, string nom);
   //Méthodes
-  int nbCompagnie(joueur j);
+  int nbCompagnie(Joueur j);
   int calculLoyer();
 };
 
