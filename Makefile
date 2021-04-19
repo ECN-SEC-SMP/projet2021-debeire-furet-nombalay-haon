@@ -1,6 +1,6 @@
 all: monopoly.out
 
-monopoly.out: main.o Achetables.o Case.o Constructibles.o Fixes.o Gares.o Joueur.o Plateau.o
+monopoly.out: main.o Achetables.o Case.o Compagnie.o Constructibles.o Fixes.o Gares.o Joueur.o Plateau.o
 	g++ -o monopoly.out main.o Achetables.o Case.o Compagnie.o Constructibles.o Fixes.o Gares.o Joueur.o Plateau.o
 
 main.o: main.cpp
