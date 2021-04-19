@@ -9,15 +9,15 @@
 
 using namespace std;
 
-class Gare: public Achetables {
+class Gare: public Achetables{
 protected:
   int loyer;
 
-public
+public:
   //Constructeur
   Gare(int prix, string nom);
   //Méthodes
   int calculLoyer();
-}
+};
 
 #endif

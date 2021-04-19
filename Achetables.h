@@ -1,7 +1,7 @@
 #ifndef __Case_h
 #define __Case_h
 
-#include "case.h"
+#include "Case.h"
 #include "Joueur.h"
 #include "string.h"
 
@@ -10,7 +10,7 @@ using namespace std;
 class Achetables{ //classe fille
 protected:
   int prix; //prix de la case
-  Joueur propriétaire;
+  Joueur proprietaire;
   bool achetable; //si case déjà achetée ou pas
 
 public:
