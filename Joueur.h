@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <string.h>
+#include <string>
 using namespace std;
  
 class Joueur {
@@ -31,7 +31,7 @@ class Joueur {
    this->position = position;
    this->nbGares = nbGares;
  }
-  void initJoueur(string nomJoueur)
+  void initJoueur(string nomJoueur)//initialisation de base
  {
    this->nomJoueur = nomJoueur;
    this->fortune = 100000;
@@ -39,16 +39,14 @@ class Joueur {
    this->nbGares = 0;
  }
  
- bool Paiement(Joueur j, int somme)
+ bool Paiement(Joueur donne,Joueur recoit, int somme)//Paiement à un autre joueur
  {
-   int fortuneJoueur1;
-   int fortuneJoueur2;
-   if (x<getFortune())
+   if (somme<getFortune())
    {
-     fortuneJoueur1=getFortune();
-     setFortune(fortuneJoueur1-x);
-     fortuneJoueur2=j.getFortune();
-     j.setFortune(fortuneJoueur2+x);
+     int fortune_donne = (donne.getFortune()-somme);
+     donne.setFortune(fortune_donne);
+     int fortune_recoit = (recoit.getFortune()+somme);
+     recoit.setFortune(fortune_recoit);
      return true;
    }
    else
