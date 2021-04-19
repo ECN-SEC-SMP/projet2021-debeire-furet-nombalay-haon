@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-Compagnie::Compagnie(int prix, string nom): {
+Compagnie::Compagnie(int prix, string nom) {
   this->prix = prix;
   this->nom = nom;
 }
