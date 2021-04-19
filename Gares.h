@@ -1,11 +1,13 @@
 #ifndef __Gare_h
 #define __Gare_h
 
+#pragma once
+#include <iostream>
+#include <string>
 #include "Case.h"
 #include "Achetables.h"
 
-#include <iostream>
-#include <string.h>
+
 
 using namespace std;
 

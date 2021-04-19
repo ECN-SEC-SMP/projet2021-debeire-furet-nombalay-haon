@@ -1,9 +1,9 @@
 #include "Case.h"
+#include "Achetables.h"
 #include "Fixes.h"
 #include "Gares.h"
 #include "Joueur.h"
 #include "Plateau.h"
-#include "Achetables.h"
 #include "Constructibles.h"
 #include "Compagnie.h"
 

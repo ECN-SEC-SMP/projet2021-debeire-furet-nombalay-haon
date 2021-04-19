@@ -1,11 +1,15 @@
 #ifndef __Constructibles_h
 #define __Constructibles_h
 
+#pragma once
 #include <iostream>
-using namespace std;
+#include <string>
+
 
 #include "Case.h"
 #include "Achetables.h"
+
+using namespace std;
 
 class Constructibles : public Achetables{
 private:

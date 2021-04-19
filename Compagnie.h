@@ -1,16 +1,18 @@
 #ifndef __Compagnie_h
 #define __Compagnie_h
 
+#pragma once
+#include <iostream>
+#include <string>
+
 #include "Case.h"
 #include "Achetables.h"
 #include "Joueur.h"
 
-#include <iostream>
-#include <string.h>
-
 using namespace std;
 
-class Compagnie: public Achetables{
+class Compagnie: public Achetables
+{
 protected:
   int loyer;
 
