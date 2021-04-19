@@ -20,7 +20,7 @@ public
   //Méthodes
   int nbCompagnie(joueur j);
   int calculLoyer();
-}
+};
 
 
 #endif
