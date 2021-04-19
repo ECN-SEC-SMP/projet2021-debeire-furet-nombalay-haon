@@ -1,5 +1,5 @@
-#ifndef __Gare_h
-#define __Gare_h
+#ifndef __Gares_h
+#define __Gares_h
 
 #include <iostream>
 #include <string>

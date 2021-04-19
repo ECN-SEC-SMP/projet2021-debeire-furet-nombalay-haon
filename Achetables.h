@@ -1,5 +1,5 @@
-#ifndef __Case_h
-#define __Case_h
+#ifndef __Achetable_h
+#define __Achetable_h
 
 #include <string>
 #include "Case.h"
