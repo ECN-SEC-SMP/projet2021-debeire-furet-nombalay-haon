@@ -8,6 +8,9 @@ Constructibles::Constructibles(int prix, int loyerBase, string nom){
     this->prix = prix;
     this->loyerBrut = loyerBase;
     this->nom = nom;
+    this->type = "R";       //R = rue
+    this->achetable = true;
+    this->proprietaire = nullptr;
 }
 
 //vérification du nombre de maisons possible à ajouter avant l'appel à cette méthode
