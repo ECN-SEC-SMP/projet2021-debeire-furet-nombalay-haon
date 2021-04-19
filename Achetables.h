@@ -3,11 +3,11 @@
 
 #include "Case.h"
 #include "Joueur.h"
-#include "string.h"
+#include <string>
 
 using namespace std;
 
-class Achetables{ //classe fille
+class Achetables: public Case{ //classe fille
 protected:
   int prix; //prix de la case
   Joueur proprietaire;

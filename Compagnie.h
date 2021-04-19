@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Compagnie: public Achetables {
+class Compagnie: public Achetables{
 protected:
   int loyer;
 
@@ -21,6 +21,5 @@ public:
   int nbCompagnie(Joueur j);
   int calculLoyer();
 };
-
 
 #endif
