@@ -1,7 +1,8 @@
-#ifndef __Plateau_h
-#define __Plateau_h
+#ifndef __Plateau_h_
+#define __Plateau_h_
 
-#define <vector>
+#include <vector>
+#include <iostream>
 using namespace std;
 
 #include "Joueur.h"
@@ -10,14 +11,24 @@ using namespace std;
 class Plateau{
 private:
   int nbCases;
-  int nbJoueursDeparts;
-  int nbJoueursEnJeu;
-  vector <Joueur*> listeJoueurs;
-  vector <Case*> listeCases;
+  int nbJoueurDepart;
+  int nbJoueurEnJeu;
+  vector<Joueur> listeJoueurs;
+  Case tabCases[];
+
 public:
-  Plateau(int nbJoueurDeparts);//initialisation
-  int getNbJoueursEnJeu() const;
-  int getNbJoueursDepart() const;
+  //constructeur
+  Plateau();
+  //méthodes
+  void initPlateau(); //initialise le plateau et demande les caractéristiques des joueurs
+  void affiche();
+  int nbGares(Joueur j);
+  Case avance(Case c, int d);
+  bool finDePartie();
+  void tourDeJeu();
+  //accesseurs en lecture
+  int getNbJoueurEnJeu() const;
+  int getNbJoueurDepart() const;
 };
 
 #endif
