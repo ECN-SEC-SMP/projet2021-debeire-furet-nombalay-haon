@@ -39,14 +39,16 @@ class Joueur {
    this->nbGares = 0;
  }
  
- bool Paiement(Joueur j, Somme x)
+ bool Paiement(Joueur j, int somme)
  {
-   if (x<getFortune)
+   int fortuneJoueur1;
+   int fortuneJoueur2;
+   if (x<getFortune())
    {
      fortuneJoueur1=getFortune();
-     setFortune(fortuneJoueur-x);
-     fortuneJoueur2getFortune();
-     setFortune(fortuneJoueur2+x);
+     setFortune(fortuneJoueur1-x);
+     fortuneJoueur2=j.getFortune();
+     j.setFortune(fortuneJoueur2+x);
      return true;
    }
    else
