@@ -9,8 +9,7 @@ Gare::Gare(int prix, string nom){
     this->nom = nom;
     this->loyer = 2500;
     this->achetable = true;
-    this->proprietaire = nullptr;
-    this->type = "G";
+    this->type = 'G';
 }
 
 int Gare::calculLoyer(int nbGares){
