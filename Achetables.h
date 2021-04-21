@@ -1,29 +1,34 @@
-#ifndef __Achetable_h
-#define __Achetable_h
+#ifndef __Achetables_h
+#define __Achetables_h
 
+#include <iostream>
+#include <string>
 #include "Case.h"
 #include "Joueur.h"
 
-#include <string>
-
 using namespace std;
 
-class Achetables: public Case{ //classe fille
+class Achetables: public Case { //classe fille
 protected:
   int prix; //prix de la case
   Joueur *proprietaire;
   bool achetable; //si case déjà achetée ou pas
 
 public:
-  //Constructeur
+  //constructeur
   Achetables();
-  Achetables(int prix, Joueur NomJoueur, bool achetable);
-
-
-  
-  //void acheter(achetable, Joueur);
+  //méthodes
+  void acheter(Joueur j);
+  //accesseurs en lecture
+  Joueur getProprio();
+  bool getAchetable();
+  int getPrix();
+  void setProprio(Joueur *j);
+  virtual int getNbMaisons();
+  virtual int getNbHotels();
+  virtual int calculLoyer();
+  virtual void ajouterMaison(int nb);
+  virtual void ajouterHotel();
 };
-
-ostream& operator << (ostream& flux,Achetables const& a);
 
 #endif

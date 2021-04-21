@@ -10,6 +10,7 @@ Constructibles::Constructibles(int prix, int loyerBase, string nom){
     this->nom = nom;
     this->type = 'R';       //R = rue
     this->achetable = true;
+    this->proprietaire = nullptr;
 }
 
 //vérification du nombre de maisons possible à ajouter avant l'appel à cette méthode
@@ -37,3 +38,7 @@ int Constructibles::calculLoyer(){
         return loyerBrut * 6;
     }
 }
+
+int Constructibles::getNbHotels(){return nbHotels;}
+
+int Constructibles::getNbMaisons(){return nbMaisons;}

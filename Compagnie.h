@@ -6,7 +6,6 @@
 
 #include "Case.h"
 #include "Achetables.h"
-#include "Joueur.h"
 
 using namespace std;
 
@@ -19,7 +18,6 @@ public:
   //Constructeur
   Compagnie(int prix, string nom);
   //Méthodes
-  int nbCompagnie(Joueur j);
   int calculLoyer();
 };
 

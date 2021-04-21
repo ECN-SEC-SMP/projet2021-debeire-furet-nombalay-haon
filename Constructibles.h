@@ -2,13 +2,10 @@
 #define __Constructibles_h
 
 #include <iostream>
-#include <string>
-
-
-#include "Case.h"
-#include "Achetables.h"
-
 using namespace std;
+
+#include "Achetables.h"
+#include "Joueur.h"
 
 class Constructibles : public Achetables{
 private:
@@ -22,6 +19,8 @@ public:
     //méthodes
     void ajouterMaison(int nb);
     void ajouterHotel();
+    int getNbMaisons();
+    int getNbHotels();
     int calculLoyer();
 };
 

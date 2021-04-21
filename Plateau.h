@@ -1,5 +1,7 @@
-/*#ifndef __Plateau_h_
+#ifndef __Plateau_h_
 #define __Plateau_h_
+
+#define MAX_CASES 29
 
 #include <vector>
 #include <iostream>
@@ -13,8 +15,8 @@ private:
   int nbCases;
   int nbJoueurDepart;
   int nbJoueurEnJeu;
-  vector<Joueur> listeJoueurs;
-  Case tabCases[];
+  vector<Joueur *> listeJoueurs;
+  Case *tabCases[MAX_CASES];
 
 public:
   //constructeur
@@ -23,13 +25,13 @@ public:
   void initPlateau(); //initialise le plateau et demande les caractéristiques des joueurs
   void affiche();
   int nbGares(Joueur j);
-  Case avance(Case c, int d);
   bool finDePartie();
   void tourDeJeu();
+  void supprimeJoueur(Joueur j);
+  int lancerDe();
   //accesseurs en lecture
   int getNbJoueurEnJeu() const;
   int getNbJoueurDepart() const;
 };
 
 #endif
-*/

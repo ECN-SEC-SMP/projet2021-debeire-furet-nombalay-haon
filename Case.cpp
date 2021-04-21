@@ -1,9 +1,8 @@
+#include <iostream>
 #include "Case.h"
 
-#include <iostream>
-#include <string.h>
+Case::Case(){}
 
-using namespace std;
+char Case::getType(){return type;}
 
- // constructeur
-  Case::Case() {}
+string Case::getNom() {return nom;};
