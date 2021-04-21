@@ -1,4 +1,4 @@
-#include "Plateau.h"
+/*#include "Plateau.h"
 #include "Joueur.h"
 #include "Case.h"
 
@@ -39,3 +39,4 @@ void Plateau::tourDeJeu()
 
   if(Case)
 }
+*/

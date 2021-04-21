@@ -15,8 +15,15 @@ protected:
   bool achetable; //si case déjà achetée ou pas
 
 public:
+  //Constructeur
   Achetables();
-  void acheter(achetable, Joueur);
+  Achetables(int prix, Joueur NomJoueur, bool achetable);
+
+
+  
+  //void acheter(achetable, Joueur);
 };
+
+ostream& operator << (ostream& flux,Achetables const& a);
 
 #endif

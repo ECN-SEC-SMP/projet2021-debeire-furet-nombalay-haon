@@ -1,4 +1,4 @@
-#ifndef __Plateau_h_
+/*#ifndef __Plateau_h_
 #define __Plateau_h_
 
 #include <vector>
@@ -32,3 +32,4 @@ public:
 };
 
 #endif
+*/
