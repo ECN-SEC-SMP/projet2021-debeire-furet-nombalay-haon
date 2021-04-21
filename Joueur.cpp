@@ -21,14 +21,12 @@ Joueur::Joueur(string nomJoueur)//initialisation de base
  void Joueur::setFortune(int fortune) { this->fortune = fortune; }
  void Joueur::setPosition(int position) { this->position = position; }
  
- bool Joueur::Paiement(Joueur recoit, int somme)//Paiement à un autre joueur
+ bool Joueur::Paiement(Joueur *recoit, int somme)//Paiement à un autre joueur
  {
    if (somme<this->getFortune())
    {
-     int fortune_donne = (this->getFortune()-somme);
-     this->setFortune(fortune_donne);
-     int fortune_recoit = (recoit.getFortune()+somme);
-     recoit.setFortune(fortune_recoit);
+     this->setFortune(this->getFortune()-somme);
+     recoit->setFortune(recoit->getFortune()+somme);
      return true;
    }
    else

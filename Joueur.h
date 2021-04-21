@@ -26,7 +26,7 @@ class Joueur {
   // constructeur
   Joueur(string nomJoueur);//initialisation de base
 
-  bool Paiement(Joueur recoit, int somme);//Paiement à un autre joueur
+  bool Paiement(Joueur *recoit, int somme);//Paiement à un autre joueur
 };
 
 #endif
