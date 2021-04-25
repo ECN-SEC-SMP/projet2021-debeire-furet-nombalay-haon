@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
+#include <iterator>
 
 #include "Plateau.h"
 #include "Joueur.h"
@@ -17,35 +18,17 @@ using namespace std;
 
 #define MAX_CASES 40
 
-
-//technique pour savoir si un object appartient à une classe
-//renvoie vrai si l'objet appartient bien à l'objet, sinon renvoie faux
-//technique trouvée sur internet
-//équivalent de isinstance(object, class) en python
-//équivalent de instanceof() en java
-template<typename Base, typename T>
-inline bool instanceof(const T*){
-  return std::is_base_of<Base, T>::value;
-}
-
+//constructeur
 Plateau::Plateau(){
   this->nbJoueurDepart = 0;
 }
 
+//initialise les joueurs et les cases pour le plateau
 void Plateau::initPlateau(){
   //initialisation des joueurs
   cout << "**************INITIALISATION DES JOUEURS**************\n" << endl;
   cout << "Entrez le nombre de participants:\t";
   cin >> this->nbJoueurDepart;
-
-	if(this->nbJoueurDepart < 2){
-    cout << "Nombre de joueurs requis insuffisants" << endl;
-    exit(-1);
-  }
-	else if(this->nbJoueurDepart > 6){
-    cout << "Nombre de joueurs trop élevé" << endl;
-    exit(-1);
-  }
 
   for(int i = 0; i < this->nbJoueurDepart; i++){
     cout << "Nom du joueur " << i + 1 << ":  ";
@@ -99,25 +82,29 @@ void Plateau::initPlateau(){
   cases.push_back(new Constructibles("Rue de la Paix", id++, 20000, 5000));
 }
 
+//détecte la fin de partie
+//si la liste des joueurs n'est de que de taille 1 la partie est finie et le gagnant est le dernier joueur en vie
 bool Plateau::finDePartie()
 {
   if(this->listeJoueurs.size() == 1)
-	{
-		cout << "Le gagnant est : " << endl;
-    this->listeJoueurs[0];
-		return true;
-  }
-  else return false;
+    return true;
+  else
+    return false;
 }
 
+//renvoie un int comprit entre 1 et 6
+//correspond au lancement d'un dé
 int Plateau::lancerDe(){
   return (rand() % 6) + 1;    //entre 1 et 6
 }
 
+//todo
+//supprime un joueur de la liste des joueurs actifs
+//intervient lorsqu'un joueur possède une fortune négative
 void Plateau::supprimeJoueur(Joueur *j){
-
 }
 
+//effectue un tour de jeu pour tous les joueurs d'un coup
 void Plateau::tourDeJeu()
 {
   srand(time(NULL));
@@ -131,13 +118,12 @@ void Plateau::tourDeJeu()
     int posJoueur = listeJoueurs[i]->getPosition();
     cout << "\tNouvelle position du joueur: " << listeJoueurs[i]->getPosition() << endl;
 
-    if(!instanceof<Achetables>(cases[posJoueur])){    //nouvelle position sur une case achetable
-      cout <<"test1"<<endl;
+    if(cases[posJoueur]->estAchetable()){    //si la nouvelle position est sur une classe achetable
+    //conversion d'un objet de classe Case vers un objet de classe Achetables
       Achetables * caseAchetable = (Achetables *) cases[posJoueur];
+      //récupère le proprietaire
       Joueur j = caseAchetable->getProprio();
-      cout <<"test2"<<endl;
       Joueur * proprioCase = &j;
-      cout <<"test3"<<endl;
       //si la case de possède pas de proprietaire
       if(proprioCase == nullptr){
         cout << "Case: " << caseAchetable->getNom() << " - sans proprietaire" << endl;
@@ -162,7 +148,7 @@ void Plateau::tourDeJeu()
       }
     }
     else{                                   //nouvelle position sur une case non achetable
-
+        //todo
     }
   }
 }

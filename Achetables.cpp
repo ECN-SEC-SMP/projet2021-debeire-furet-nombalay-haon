@@ -6,14 +6,21 @@ using namespace std;
  // constructeur
 Achetables::Achetables(string nom, int id): Case(nom, id){}
 
+//renvoie vrai constamment
 bool Achetables::estAchetable(){return true;}
 
+//renvoie un pointeur sur le proprietaire qui est un objet de type Joueur
 Joueur Achetables::getProprio() {return *proprietaire;}
 
-int Achetables::getPrix(){return this->prix;}
+//renvoie le prix
+int Achetables::getPrix(){return prix;}
 
-int Achetables::getLoyer(){return this->loyer;}
+//renvoie le loyer de base de la case
+int Achetables::getLoyer(){return loyer;}
 
+//le joueur qui achète devient proprietaire de la case
+//il doit également payer le prix de cette case
+//renvoie vrai si l'achat s'est bien déroulé
 bool Achetables::acheter(Joueur *acheteur){
   if(this->proprietaire != nullptr){
     if(acheteur->getFortune() >= this->prix){
@@ -27,13 +34,4 @@ bool Achetables::acheter(Joueur *acheteur){
     }
   }
   return false;
-}
-
-void Achetables::setLoyer(int loyer){
-  this->loyer = loyer;
-}
-
-bool Achetables::proprioPresent(){
-  if(this->proprietaire == nullptr){return false;}
-  else{return true;}
 }
