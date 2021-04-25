@@ -3,4 +3,4 @@ FURET Emmanuel
 HAON Guillaume
 NOMBALAY Clément
 
-reproduction textuelle d'un monopoly
+Reproduction textuelle d'un monopoly à l'aide de la console en C++
