@@ -7,6 +7,7 @@ using namespace std;
 
 #define MAX_CASES 40
 
+//initialisation d'un joueur en début de jeu
 Joueur::Joueur(string nomJoueur){
   this->nomJoueur = nomJoueur;
   this->fortune = 100000;
