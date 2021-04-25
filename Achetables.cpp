@@ -25,7 +25,6 @@ bool Achetables::acheter(Joueur *acheteur){
   if(this->proprietaire != nullptr){
     if(acheteur->getFortune() >= this->prix){
       if(acheteur->subFortune(this->prix)){
-        acheteur->subFortune(this->prix);
         this->proprietaire = acheteur;
         return true;
       }
