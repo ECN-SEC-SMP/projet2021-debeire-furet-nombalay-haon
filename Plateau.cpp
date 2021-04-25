@@ -15,13 +15,21 @@
 
 using namespace std;
 
-#define MAX_CASES 29
+#define MAX_CASES 40
 
-Plateau::Plateau()
-{
-  this->nbCases = MAX_CASES;
+
+//technique pour savoir si un object appartient à une classe
+//renvoie vrai si l'objet appartient bien à l'objet, sinon renvoie faux
+//technique trouvée sur internet
+//équivalent de isinstance(object, class) en python
+//équivalent de instanceof() en java
+template<typename Base, typename T>
+inline bool instanceof(const T*){
+  return std::is_base_of<Base, T>::value;
+}
+
+Plateau::Plateau(){
   this->nbJoueurDepart = 0;
-  this->nbJoueurEnJeu = 0;
 }
 
 void Plateau::initPlateau(){
@@ -29,135 +37,120 @@ void Plateau::initPlateau(){
   cout << "**************INITIALISATION DES JOUEURS**************\n" << endl;
   cout << "Entrez le nombre de participants:\t";
   cin >> this->nbJoueurDepart;
-  this->nbJoueurEnJeu = this->nbJoueurDepart;
 
   for(int i = 0; i < this->nbJoueurDepart; i++){
-    cout << "Nom du joueur " << i + 1 << "\t";
+    cout << "Nom du joueur " << i + 1 << ":  ";
     string name;
     cin >> name;
     Joueur *j = new Joueur(name);
     this->listeJoueurs.push_back(j);
-    cout << endl;
   }
 
   //initialisation des cases
-  tabCases[0] = new Fixe('D', "Depart");  //case départ
-  tabCases[1] = new Constructibles(3000, 600, "Rue Lecourbe");
-  tabCases[2] = new Constructibles(3000, 600, "Boulevard de Belleville");
-  tabCases[3] = new Gare(20000, "Gare du Nord");
-  tabCases[4] = new Constructibles(4000, 800, "Avenue de la Republique");
-  tabCases[5] = new Constructibles(4000, 800, "Rue de Courcelles");
-  tabCases[6] = new Constructibles(4000, 800, "Rue de Vaugirard");
-  tabCases[7] = new Constructibles(6000, 1200, "Boulevard de la Villette");
-  tabCases[8] = new Compagnie(10000, "Distribution de l'electricite");
-  tabCases[9] = new Constructibles(6000, 1200, "Avenue de Neuilly");
-  tabCases[10] = new Constructibles(6000, 1200, "Rue de Paradis");
-  tabCases[11] = new Gare(20000, "Gare Montparnasse");
-  tabCases[12] = new Constructibles(8000, 1600, "Avenue de Mozart");
-  tabCases[13] = new Constructibles(8000, 1600, "Boulevard St-Michel");
-  tabCases[14] = new Constructibles(8000, 1600, "Place Pigalle");
-  tabCases[15] = new Constructibles(11000, 2200, "Avenue Matignon");
-  tabCases[16] = new Constructibles(11000, 2200, "Boulevard Malesherbes");
-  tabCases[17] = new Constructibles(11000, 2200, "Avenue Henri-Martin");
-  tabCases[18] = new Gare(20000, "Gare Saint-Lazare");
-  tabCases[19] = new Constructibles(13000, 2600, "Faubourg Saint-Honore");
-  tabCases[20] = new Constructibles(13000, 2600, "Place de la Bourse");
-  tabCases[21] = new Compagnie(10000, "Distribution de l'eau");
-  tabCases[22] = new Constructibles(13000, 2600, "Rue Lafayette");
-  tabCases[23] = new Constructibles(18000, 3600, "Avenue de Breteuil");
-  tabCases[24] = new Constructibles(18000, 3600, "Avenue Foch");
-  tabCases[25] = new Constructibles(18000, 3600, "Boulevard des Capucines");
-  tabCases[26] = new Gare(20000, "Gare de Lyon");
-  tabCases[27] = new Constructibles(20000, 5000, "Avenue des Champs-Elysees");
-  tabCases[28] = new Constructibles(20000, 5000, "Rue de la Paix");
-}
-
-int Plateau::nbGares(Joueur j){
-  int nb = 0;
-  for(int i = 0; i<MAX_CASES; i++){
-    if(this->tabCases[i]->getType() == 'G'){
-      if(!(this->tabCases[i]->getAchetable()) && this->tabCases[i]->getProprio() == j)
-        nb ++;
-    }
-  }
-  return nb;
+  int id = 1;
+  cases.push_back(new Fixe("Depart", id++));
+  cases.push_back(new Constructibles("Boulevard de Belleville", id++, 3000, 600));
+  cases.push_back(new Fixe("Caisse de communaute", id++));
+  cases.push_back(new Constructibles("Rue Lecourbe", id++, 3000, 600));
+  cases.push_back(new Fixe("Impot sur le revenu", id++));
+  cases.push_back(new Gare("Gare Montparnasse", id++));
+  cases.push_back(new Constructibles("Rue de Vaugirard", id++, 4000, 800));
+  cases.push_back(new Fixe("Chance", id++));
+  cases.push_back(new Constructibles("Rue de Courcelles", id++, 4000, 800));
+  cases.push_back(new Constructibles("Avenue de la Republique", id++, 4000, 800));    //case 10
+  cases.push_back(new Fixe("Prison", id++));
+  cases.push_back(new Constructibles("Boulevard de la Villette", id++, 6000, 1200));
+  cases.push_back(new Compagnie("Distribution electricite", id++));
+  cases.push_back(new Constructibles("Avenue de Neuilly", id++, 6000, 1200));
+  cases.push_back(new Constructibles("Rue de Paradis", id++, 6000, 1200));
+  cases.push_back(new Gare("Gare de Lyon", id++));
+  cases.push_back(new Constructibles("Avenue de Mozart", id++, 8000, 1600));
+  cases.push_back(new Fixe("Caisse de communaute", id++));
+  cases.push_back(new Constructibles("Boulevard St-Michel", id++, 8000, 1600));
+  cases.push_back(new Constructibles("Place Pigalle", id++, 8000, 1600));
+  cases.push_back(new Fixe("Parc Gratuit", id++));
+  cases.push_back(new Constructibles("Avenue Matignon", id++, 11000, 2200));
+  cases.push_back(new Fixe("Chance", id++));
+  cases.push_back(new Constructibles("Boulevard Malesherbes", id++, 11000, 2200));
+  cases.push_back(new Constructibles("Avenue Henri-Martin", id++, 11000, 2200));
+  cases.push_back(new Gare("Gare du Nord", id++));
+  cases.push_back(new Constructibles("Faubourg Saint-Honore", id++, 13000, 2600));
+  cases.push_back(new Constructibles("Place de la Bourse", id++, 13000, 2600));
+  cases.push_back(new Compagnie("Distribution d'eau", id++));
+  cases.push_back(new Constructibles("Rue Lafayette", id++, 13000, 2600));
+  cases.push_back(new Fixe("Allez en prison", id++));
+  cases.push_back(new Constructibles("Avenue de Breteuil", id++, 18000, 3600));
+  cases.push_back(new Constructibles("Avenue Foch", id++, 18000, 3600));
+  cases.push_back(new Fixe("Caisse de communaute", id++));
+  cases.push_back(new Constructibles("Boulevard des Capucines", id++, 18000, 3600));
+  cases.push_back(new Gare("Gare Saint-Lazare", id++));
+  cases.push_back(new Fixe("Chance", id++));
+  cases.push_back(new Constructibles("Avenue des Champs-Elysees", id++, 20000, 5000));
+  cases.push_back(new Fixe("Taxe de luxe", id++));
+  cases.push_back(new Constructibles("Rue de la Paix", id++, 20000, 5000));
 }
 
 bool Plateau::finDePartie()
 {
-  if(this->nbJoueurEnJeu == 1)
+  if(this->listeJoueurs.size() == 1)
     return true;
   else
     return false;
 }
 
 int Plateau::lancerDe(){
-  srand(time(NULL));
-  return (rand() % 6);    //entre 1 et 6
+  return (rand() % 6) + 1;    //entre 1 et 6
 }
 
-//todo: ajouter de l'affichage sur les grosses actions du jeu
+void Plateau::supprimeJoueur(Joueur *j){
+
+}
+
 void Plateau::tourDeJeu()
 {
-  for(int it = 0; it < this->listeJoueurs.size(); it++){
+  srand(time(NULL));
+  for(int i = 0; i<listeJoueurs.size(); i++){
+    //fait avancer le joueur
+    cout << "Tour du joueur: " << listeJoueurs[i]->getNom() << endl;
     int de = Plateau::lancerDe();
-    listeJoueurs[it]->avancer(de);    //fait avancer le joueur
-    Case *cons = tabCases[listeJoueurs[it]->getPosition()];   //récupère la case sur laquelle le joueur se situe
-    if(cons->getType() == 'R'){         //case de type rue
-      if(cons->getAchetable() && de%2 == 1){    //si elle est achetable et le résultat du dé est impair
-        if(listeJoueurs[it]->achatPossible(cons->getPrix())){   //vérifie que le joueur a les moyens de payer la case
-          cons->setProprio(listeJoueurs[it]);   //change le proprietaire
-          listeJoueurs[it]->subFortune(cons->getPrix());    //soustrait le prix de la case à la fortune du joueur
-        }//fin if achat possible
-      }//fin if achetable
-      else if(cons->getAchetable() == false){   //si la case est déjà achetée
-        Joueur proprio = cons->getProprio();
-        if(&proprio != listeJoueurs[it]){   //si le joueur sur la case n'est pas l'heureux propriétaire de cette case
-          int loyer = cons->calculLoyer();  //calcul du loyer
-          listeJoueurs[it]->paiement(&proprio, loyer);  //effectue le paiement
-        }
-        else if(&proprio == listeJoueurs[it]){  //si le joueur présent sur la case est le proprietaire alors il peut acheter des maisons ou un hotel
-          cout << "Vous possedez une fortune de " << listeJoueurs[it]->getFortune() << "." << endl;
-          if(cons->getNbHotels() == 1)  //le proprietaire possede deja un hotel sur la case il ne peut donc plus acheter quoi que ce soit
-            cout << "Vous possedez deja un hotel sur la case " << cons->getNom() << " et vous ne pouvez pas construire d'avantage." << endl;
-          else if(cons->getNbHotels() == 0 && cons->getNbMaisons() != 4){   //le proprietaire peut encore acheter une ou plusieurs maisons
-            cout << "Vous ne possedez pas d'hotel et vous possedez " << cons->getNbMaisons() << " maisons, voulez vous construire ? [o:oui/n:non]";
-            char reponse;
-            cin >> reponse;
-            cout << endl;
-            if(reponse == 'o' || reponse == 'O'){ //le joueur veut acheter une ou plusieurs maisons
-              cout << "Vous ne pouvez construire que " << 4 - cons->getNbMaisons() << "." << endl;
-              cout << "Combien de maisons voulez-vous construire pour le prix de 5000 chacune ??  ";
-              int nb;
-              cin >> nb;
-              cout << endl;
-              while(cons->getNbMaisons() + nb > 4){ //il ne peut avoir que 4 maisons max par case ou 1 hotel
-                cout << "Vous ne pouvez avoir que 4 maisons maximum avant d'acheter un hotel la prochaine fois que vous tomberez sur la case " << cons->getNom() << endl;
-                cout << "Combien de maisons voulez-vous construire pour le prix de 5000 chacune ? (4 maximum par case)  ";
-                cin >> nb;
-                cout << endl;
-              }
-              cout << "Vous achetez " << nb << " maisons sur la case " << cons->getNom() << endl;
-              cons->ajouterMaison(nb);    //on ajoute les maisons a la case
-              listeJoueurs[it]->subFortune(5000*nb);  //on enleve le prix des maisons au joueur
-            }
-          }
-          else{   //le proprietaire peut acheter un hotel car il possede 4 maisons
-            cout << "Vous possedez 4 maisons, voulez-vous acheter un hotel sur la case " << cons->getNom() << " ? [o:oui:n:non]";
-            char reponse;
-            cin >> reponse;
-            cout << endl;
-            if(reponse == 'o' || reponse == 'O'){
-              cout << "Vous achetez un hotel sur la case " << cons->getNom() << " pour la somme de 10 000." << endl;
-              cons->ajouterHotel();
-              listeJoueurs[it]->subFortune(10000);
-            }
+    cout << "Valeur du de: " << de << endl;
+    cout << "Ancienne position du joueur: " <<listeJoueurs[i]->getPosition();
+    listeJoueurs[i]->avancer(de);
+    int posJoueur = listeJoueurs[i]->getPosition();
+    cout << "\tNouvelle position du joueur: " << listeJoueurs[i]->getPosition() << endl;
+
+    if(!instanceof<Achetables>(cases[posJoueur])){    //nouvelle position sur une case achetable
+      cout <<"test1"<<endl;
+      Achetables * caseAchetable = (Achetables *) cases[posJoueur];
+      Joueur j = caseAchetable->getProprio();
+      cout <<"test2"<<endl;
+      Joueur * proprioCase = &j;
+      cout <<"test3"<<endl;
+      //si la case de possède pas de proprietaire
+      if(proprioCase == nullptr){
+        cout << "Case: " << caseAchetable->getNom() << " - sans proprietaire" << endl;
+        //si l'achat de la case par le joueur est possible et que le résultat du dé est impair alors le joueur achète la case
+        if(listeJoueurs[i]->paiementPossible(caseAchetable->getPrix()) && de%2 == 1){
+          cout << "Achat de la case car le resultat du de est impair et le joueur possede suffisamment de moyens" << endl;
+          //vérifie si l'achat s'est bien passé
+          if(caseAchetable->acheter(listeJoueurs[i])){
+            cout << "Achat de la case " << caseAchetable->getNom() << " effectue" << endl;
           }
         }
       }
-    }//fin if cons
-    else if(cons->getType() == 'G'){
-      
+      //si la case possède un proprietaire
+      else if(proprioCase != nullptr && proprioCase != listeJoueurs[i]){
+        cout << "La case possede un proprietaire qui est le joueur: " << caseAchetable->getProprio().getNom() << endl;
+        int loyer = caseAchetable->calculLoyer();
+        bool resPaiement = listeJoueurs[i]->paiement(proprioCase, loyer);
+        if(!resPaiement){   //si le joueur ne pouvait pas payer le loyer il est supprimer de la liste des joueurs
+          Plateau::supprimeJoueur(listeJoueurs[i]);
+          cout << "Joueur " << listeJoueurs[i]->getNom() << " elimine car moyens insuffisants" << endl;
+        }
+      }
     }
-  }//fin for
+    else{                                   //nouvelle position sur une case non achetable
+
+    }
+  }
 }

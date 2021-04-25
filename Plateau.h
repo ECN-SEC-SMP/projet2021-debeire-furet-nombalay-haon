@@ -1,7 +1,7 @@
 #ifndef __Plateau_h_
 #define __Plateau_h_
 
-#define MAX_CASES 29
+#define MAX_CASES 40
 
 #include <vector>
 #include <iostream>
@@ -12,11 +12,9 @@ using namespace std;
 
 class Plateau{
 private:
-  int nbCases;
   int nbJoueurDepart;
-  int nbJoueurEnJeu;
   vector<Joueur *> listeJoueurs;
-  Case *tabCases[MAX_CASES];
+  vector<Case *> cases;
 
 public:
   //constructeur
@@ -24,14 +22,10 @@ public:
   //méthodes
   void initPlateau(); //initialise le plateau et demande les caractéristiques des joueurs
   void affiche();
-  int nbGares(Joueur j);
   bool finDePartie();
   void tourDeJeu();
-  void supprimeJoueur(Joueur j);
+  void supprimeJoueur(Joueur *j);
   int lancerDe();
-  //accesseurs en lecture
-  int getNbJoueurEnJeu() const;
-  int getNbJoueurDepart() const;
 };
 
 #endif

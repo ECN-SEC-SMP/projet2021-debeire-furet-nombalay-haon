@@ -4,13 +4,12 @@
 #include "Constructibles.h"
 using namespace std;
 
-Constructibles::Constructibles(int prix, int loyerBase, string nom){
+Constructibles::Constructibles(string nom, int id, int prix, int loyer) : Achetables(nom, id){
     this->prix = prix;
-    this->loyerBrut = loyerBase;
-    this->nom = nom;
-    this->type = 'R';       //R = rue
-    this->achetable = true;
+    this->loyer = loyer;
     this->proprietaire = nullptr;
+    this->nbMaisons = 0;
+    this->nbHotels = 0;
 }
 
 //vérification du nombre de maisons possible à ajouter avant l'appel à cette méthode
@@ -25,20 +24,19 @@ void Constructibles::ajouterHotel(){
 }
 
 int Constructibles::calculLoyer(){
-    //formule pour les maisons: loyer = nbMaisons * loyerBrut
-    if (nbMaisons != 0 && nbHotels == 0){
-        return nbMaisons * loyerBrut;
-    }
-    //si pas de maison ni hotel on retourne le loyer brut de base
-    else if(nbMaisons == 0 && nbHotels == 0){
-        return loyerBrut;
-    }
-    //si un hotel on retourne le loyer brut * 6
-    else if (nbMaisons == 0 && nbHotels == 1){
-        return loyerBrut * 6;
-    }
+  if(nbMaisons == 0 && nbHotels == 0)
+    return prix * 0.6;
+  else if(nbMaisons != 0 && nbHotels == 0){
+    return prix * (0.6 + 0.1 * nbMaisons);
+  }
+  else if(nbMaisons == 0 && nbHotels == 1)
+    return (prix + prix * 0.5);
 }
 
-int Constructibles::getNbHotels(){return nbHotels;}
-
-int Constructibles::getNbMaisons(){return nbMaisons;}
+// void Constructibles::affiche(){
+//   cout << "Case: " << nom << " (Cout: " << prix << ") - ";
+//   if(proprietaire != nullptr)
+//     cout << "proprietaire: " << proprietaire->getNom() << ", " << nbMaisons << " maisons, loyer = " << Constructibles::calculLoyer() << endl;
+//   else
+//     cout << "sans proprietaire" << endl;
+// }

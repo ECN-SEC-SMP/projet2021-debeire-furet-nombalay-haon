@@ -12,13 +12,12 @@ using namespace std;
 class Compagnie: public Achetables
 {
 protected:
-  int loyer;
-
 public:
   //Constructeur
-  Compagnie(int prix, string nom);
+  Compagnie(string nom, int id);
   //Méthodes
   int calculLoyer();
+  // void affiche()override;
 };
 
 #endif

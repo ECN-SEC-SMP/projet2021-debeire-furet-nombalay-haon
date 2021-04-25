@@ -1,25 +1,39 @@
+#include <iostream>
 #include "Achetables.h"
 #include "Joueur.h"
+using namespace std;
 
  // constructeur
-Achetables::Achetables(){}
+Achetables::Achetables(string nom, int id): Case(nom, id){}
 
-bool Achetables::getAchetable(){return achetable;}
+bool Achetables::estAchetable(){return true;}
 
 Joueur Achetables::getProprio() {return *proprietaire;}
 
 int Achetables::getPrix(){return prix;}
 
-void Achetables::setProprio(Joueur *j){
-  this->proprietaire = j;
+int Achetables::getLoyer(){return loyer;}
+
+bool Achetables::acheter(Joueur *acheteur){
+  if(this->proprietaire != nullptr){
+    if(acheteur->getFortune() >= this->prix){
+      if(acheteur->subFortune(this->prix)){
+        acheteur->subFortune(this->prix);
+        this->proprietaire = acheteur;
+        return true;
+      }
+      else
+        return false;
+    }
+  }
+  return false;
 }
 
-int Achetables::getNbMaisons(){}
+void Achetables::setLoyer(int loyer){
+  this->loyer = loyer;
+}
 
-int Achetables::getNbHotels(){}
-
-int Achetables::calculLoyer(){}
-
-void Achetables::ajouterMaison(int nb){}
-
-void Achetables::ajouterHotel(){}
+bool Achetables::proprioPresent(){
+  if(this->proprietaire == nullptr){return false;}
+  else{return true;}
+}

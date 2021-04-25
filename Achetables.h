@@ -12,23 +12,23 @@ class Achetables: public Case { //classe fille
 protected:
   int prix; //prix de la case
   Joueur *proprietaire;
-  bool achetable; //si case déjà achetée ou pas
+  int loyer;
 
 public:
   //constructeur
-  Achetables();
+  Achetables(string nom, int id);
   //méthodes
-  void acheter(Joueur j);
+  bool estAchetable();
+  bool acheter(Joueur *acheteur);
+  virtual int calculLoyer() = 0;
+  bool proprioPresent();
+  // virtual void affiche();
   //accesseurs en lecture
   Joueur getProprio();
-  bool getAchetable();
   int getPrix();
-  void setProprio(Joueur *j);
-  virtual int getNbMaisons();
-  virtual int getNbHotels();
-  virtual int calculLoyer();
-  virtual void ajouterMaison(int nb);
-  virtual void ajouterHotel();
+  int getLoyer();
+  //accesseur écriture
+  void setLoyer(int loyer);
 };
 
 #endif

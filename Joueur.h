@@ -10,22 +10,27 @@ class Joueur {
    string nomJoueur;
    int fortune;
    int position;
+   int nbGares;
+   int nbCompagnies;
 
  public:
+   //constructeur
+   Joueur(string nomJoueur);
+   //méthodes
+   bool paiement(Joueur *j, int somme); //le joueur paye au joueur j un loyer du montant de somme
+   bool subFortune(int prix);
+   void addFortune(int prix);
+   bool paiementPossible(int prixCase);
+   void avancer(int nbr);
    // accesseurs en lecture
    string getNom();
    int getFortune();
    int getPosition();
-   //constructeur
-   Joueur(string nomJoueur);
-   //méthodes
-   void avancer(int nbCasesSup);
-   bool paiement(Joueur *j, int somme); //le joueur paye au joueur j un loyer du montant de somme
-   void subFortune(int prix);
-   void addFortune(int prix);
-   bool achatPossible(int prixCase);
+   int getNbGares();
+   int getNbCompagnies();
+   // accesseurs en écriture
+   void setNbGares(int nb);
+   void setNbCompagnies(int nb);
 };
-
-bool operator==(Joueur const& j1, Joueur const& j2);
 
 #endif

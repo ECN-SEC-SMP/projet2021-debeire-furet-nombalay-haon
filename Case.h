@@ -8,28 +8,18 @@
 
 using namespace std;
 
-class Case{ //classe abstraite
+class Case{
 protected:
-  string nom; //pas de numéro de case car on range les cases dans un tableau
-  char type;
+  string nom;
+  int id;
 
 public:
   //constructeur
-  Case();
+  Case(string nom, int id);
   //accesseurs lecture
-  char getType();
+  int getID();
   string getNom();
-  //méthodes virtuelles pour achetables
-  virtual bool getAchetable();
-  virtual Joueur getProprio();
-  virtual void setProprio(Joueur *j);
-  virtual int getPrix();
-  //méthodes virtuelles pour Constructibles
-  virtual int getNbMaisons();
-  virtual int getNbHotels();
-  virtual int calculLoyer();
-  virtual void ajouterMaison(int nb);
-  virtual void ajouterHotel();
+  virtual bool estAchetable() = 0;
 };
 
 #endif

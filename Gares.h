@@ -12,13 +12,12 @@ using namespace std;
 
 class Gare: public Achetables{
 protected:
-  int loyer;
-
 public:
   //Constructeur
-  Gare(int prix, string nom);
+  Gare(string nom, int id);
   //Méthodes
-  int calculLoyer(int nbGares);
+  int calculLoyer();
+  // void affiche()override;
 };
 
 #endif

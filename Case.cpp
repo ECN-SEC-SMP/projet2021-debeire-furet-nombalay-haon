@@ -1,8 +1,11 @@
 #include <iostream>
 #include "Case.h"
 
-Case::Case(){}
+Case::Case(string nom, int id){
+  this->nom = nom;
+  this->id = id;
+}
 
-char Case::getType(){return type;}
+int Case::getID(){return id;}
 
 string Case::getNom() {return nom;};

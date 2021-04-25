@@ -4,14 +4,22 @@
 #include "Case.h"
 using namespace std;
 
-Gare::Gare(int prix, string nom){
-    this->prix = prix;
-    this->nom = nom;
+Gare::Gare(string nom, int id) : Achetables(nom, id){
+    this->prix = 5000;
     this->loyer = 2500;
-    this->achetable = true;
-    this->type = 'G';
+    this->proprietaire = nullptr;
 }
 
-int Gare::calculLoyer(int nbGares){
-    return nbGares * loyer;
+int Gare::calculLoyer(){
+    return proprietaire->getNbGares() * loyer;
 }
+
+// void Gare::affiche(){
+//   cout << "Case: " << nom << " (Cout: " << prix << ") - ";
+//   if(proprietaire == nullptr){
+//     cout << "sans proprietaire" << endl;
+//   }
+//   else{
+//     cout << "proprietaire: " << proprietaire->getNom() << ", loyer: " << Gare::calculLoyer() << endl;
+//   }
+// }

@@ -5,12 +5,14 @@
 
 using namespace std;
 
-#define MAX_CASES 29
+#define MAX_CASES 40
 
 Joueur::Joueur(string nomJoueur){
   this->nomJoueur = nomJoueur;
   this->fortune = 100000;
-  this->position = 0;
+  this->position = 1;
+  this->nbGares = 0;
+  this->nbCompagnies = 0;
 }
 
 string Joueur::getNom(){
@@ -25,37 +27,57 @@ int Joueur::getPosition(){
   return position;
 }
 
-void Joueur::subFortune(int prix){
-  fortune -= prix;
+int Joueur::getNbGares(){
+  return nbGares;
 }
 
-void Joueur::avancer(int nbCasesSup){
-  if((position + nbCasesSup) >= MAX_CASES)
-    position = (position + nbCasesSup) - MAX_CASES;
-  else
-    position += nbCasesSup;
+int Joueur::getNbCompagnies(){
+  return nbCompagnies;
 }
 
-bool operator==(Joueur j1, Joueur j2){
-  if(j1.getNom() == j2.getNom() && j1.getFortune() == j2.getFortune() && j1.getPosition() == j2.getPosition())
+bool Joueur::subFortune(int prix){
+  if(fortune - prix > 0){
+    fortune -= prix;
     return true;
-  else
+  }
+  else{
     return false;
+  }
 }
 
-bool Joueur::achatPossible(int prixCase){
+bool Joueur::paiementPossible(int prixCase){
   if(prixCase > fortune)
-    return true;
-  else
     return false;
+  else
+    return true;
 }
 
 bool Joueur::paiement(Joueur *j, int somme){
   cout << "Le joueur " << nomJoueur << " paye au joueur " << j->getNom() << "un loyer d'une somme de " << somme << endl;
-  Joueur::subFortune(somme);
   j->addFortune(somme);
+  if(Joueur::paiementPossible(somme)){
+    Joueur::subFortune(somme);
+    return true;
+  }
+  else
+    return false;
 }
 
 void Joueur::addFortune(int prix){
   fortune += prix;
+}
+
+void Joueur::setNbGares(int nb){
+  nbGares = nb;
+}
+
+void Joueur::setNbCompagnies(int nb){
+  nbCompagnies = nb;
+}
+
+void Joueur::avancer(int nbr){
+  if(nbr + position > MAX_CASES)
+    position = (position + nbr) - MAX_CASES;
+  else
+    position += nbr;
 }
