@@ -38,6 +38,15 @@ void Plateau::initPlateau(){
   cout << "Entrez le nombre de participants:\t";
   cin >> this->nbJoueurDepart;
 
+	if(this->nbJoueurDepart < 2){
+    cout << "Nombre de joueurs requis insuffisants" << endl;
+    exit(-1);
+  }
+	else if(this->nbJoueurDepart > 6){
+    cout << "Nombre de joueurs trop élevé" << endl;
+    exit(-1);
+  }
+
   for(int i = 0; i < this->nbJoueurDepart; i++){
     cout << "Nom du joueur " << i + 1 << ":  ";
     string name;
@@ -93,9 +102,12 @@ void Plateau::initPlateau(){
 bool Plateau::finDePartie()
 {
   if(this->listeJoueurs.size() == 1)
-    return true;
-  else
-    return false;
+	{
+		cout << "Le gagnant est : " << endl;
+    this->listeJoueurs[0];
+		return true;
+  }
+  else return false;
 }
 
 int Plateau::lancerDe(){

@@ -10,9 +10,9 @@ bool Achetables::estAchetable(){return true;}
 
 Joueur Achetables::getProprio() {return *proprietaire;}
 
-int Achetables::getPrix(){return prix;}
+int Achetables::getPrix(){return this->prix;}
 
-int Achetables::getLoyer(){return loyer;}
+int Achetables::getLoyer(){return this->loyer;}
 
 bool Achetables::acheter(Joueur *acheteur){
   if(this->proprietaire != nullptr){
